@@ -21,6 +21,28 @@ class CaptchaConfig(Config):
     def read_config(self, config, **kwargs):
         self.recaptcha_private_key = config.get("recaptcha_private_key")
         self.recaptcha_public_key = config.get("recaptcha_public_key")
+        
+        # https://anti-captcha.com/
+        self.hcaptcha_private_key = config.get("hcaptcha_private_key")
+        self.hcaptcha_public_key = config.get("hcaptcha_public_key")
+        
+        
+        # adds hcaptcha
+        self.enable_registration_hcaptcha= config.get(
+            "enable_registration_hcaptcha", False
+        )
+        
+        
+        self.hcaptcha_siteverify_api = config.get(
+            "hcaptcha_siteverify_api",
+            "https://hcaptcha.com/siteverify",
+        )
+        
+        self.hcaptcha_template = self.read_templates(
+            ["hcaptcha.html"], autoescape=True
+        )[0]
+        
+        
         self.enable_registration_captcha = config.get(
             "enable_registration_captcha", False
         )
@@ -36,6 +58,8 @@ class CaptchaConfig(Config):
         return """\
         ## Captcha ##
         # See docs/CAPTCHA_SETUP.md for full details of configuring this.
+        
+        # Need to add support for hcaptcha notes here
 
         # This homeserver's ReCAPTCHA public key. Must be specified if
         # enable_registration_captcha is enabled.
@@ -57,4 +81,12 @@ class CaptchaConfig(Config):
         # Defaults to "https://www.recaptcha.net/recaptcha/api/siteverify".
         #
         #recaptcha_siteverify_api: "https://my.recaptcha.site"
+
+        # Support for Hcaptcha has been added, it supports the same config values as recaptcha
+        # https://hcaptcha.com/
+        #hcaptcha_public_key: "YOUR_PUBLIC_KEY"
+        #hcaptcha_private_key: "YOUR_PRIVATE_KEY"
+        #enable_registration_hcaptcha: true
+        #hcaptcha_siteverify_api: "https://my.hcaptcha.site"
+
         """

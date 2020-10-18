@@ -60,6 +60,7 @@ class LoginType:
     EMAIL_IDENTITY = "m.login.email.identity"
     MSISDN = "m.login.msisdn"
     RECAPTCHA = "m.login.recaptcha"
+    HCAPTCHA = "m.login.hcaptcha"
     TERMS = "m.login.terms"
     SSO = "m.login.sso"
     DUMMY = "m.login.dummy"
@@ -155,8 +156,3 @@ class EventContentFields:
 class RoomEncryptionAlgorithms:
     MEGOLM_V1_AES_SHA2 = "m.megolm.v1.aes-sha2"
     DEFAULT = MEGOLM_V1_AES_SHA2
-
-
-class AccountDataTypes:
-    DIRECT = "m.direct"
-    IGNORED_USER_LIST = "m.ignored_user_list"

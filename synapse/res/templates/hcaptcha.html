@@ -23,15 +23,10 @@ function captchaDone() {
         Please verify that you're not a robot.
         </p>
         <input type="hidden" name="session" value="{{ session }}" />
-        
-        <p>
-        This is hcaptcha and should show a submit button once the confirmation is completed...
-        </p>
         <div class="h-captcha" data-sitekey="{{ sitekey }}" data-callback="captchaDone" ></div>
         <noscript>
         <input type="submit" value="All Done" />
         </noscript>
-        
     </div>
 </form>
 </body>

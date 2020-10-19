@@ -21,28 +21,7 @@ class CaptchaConfig(Config):
     def read_config(self, config, **kwargs):
         self.recaptcha_private_key = config.get("recaptcha_private_key")
         self.recaptcha_public_key = config.get("recaptcha_public_key")
-        
-        # https://anti-captcha.com/
-        self.hcaptcha_private_key = config.get("hcaptcha_private_key")
-        self.hcaptcha_public_key = config.get("hcaptcha_public_key")
-        
-        
-        # adds hcaptcha
-        self.enable_registration_hcaptcha= config.get(
-            "enable_registration_hcaptcha", False
-        )
-        
-        
-        self.hcaptcha_siteverify_api = config.get(
-            "hcaptcha_siteverify_api",
-            "https://hcaptcha.com/siteverify",
-        )
-        
-        self.hcaptcha_template = self.read_templates(
-            ["hcaptcha.html"], autoescape=True
-        )[0]
-        
-        
+
         self.enable_registration_captcha = config.get(
             "enable_registration_captcha", False
         )
@@ -52,6 +31,19 @@ class CaptchaConfig(Config):
         )
         self.recaptcha_template = self.read_templates(
             ["recaptcha.html"], autoescape=True
+        )[0]
+
+        self.hcaptcha_private_key = config.get("hcaptcha_private_key")
+        self.hcaptcha_public_key = config.get("hcaptcha_public_key")
+        self.enable_registration_hcaptcha = config.get(
+            "enable_registration_hcaptcha", False
+        )
+        self.hcaptcha_siteverify_api = config.get(
+            "hcaptcha_siteverify_api",
+            "https://hcaptcha.com/siteverify",
+        )
+        self.hcaptcha_template = self.read_templates(
+            ["hcaptcha.html"], autoescape=True
         )[0]
 
     def generate_config_section(self, **kwargs):
